@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	</head>
+	<body>
+	<div class="print_content" style="border: 1px solid #000000;">
+		<h1>我是第一页的标题</h1>
+		<div>我是第一页的内容</div>
+		<div style="color: red;">下边是第一页的图片</div>
+		<img src="img.jpg" />
+	</div>
+	<div class="print_content" style="border: 1px solid #000000;">
+		<h1>我是第二页的标题</h1>
+		<div>我是第二页的内容</div>
+		<div style="color: red;">下边是第二页的图片</div>
+		<img src="img2.jpg" />
+	</div>
+	<input type="button" value="打印预览第一页" onclick="doPrint(1);" />
+	<input type="button" value="打印预览两页" onclick="doPrint(2);" />
+	<script type="text/javascript" src="jquery-1.8.3.js"></script>
+	<script type="text/javascript" src="printer.js"></script>
+	<script type="text/javascript">
+	
+		function doPrint(type){
+			var config = new Object();
+			config.pluginPath = "jatoolsPrinter.cab";
+			// 只支持IE内核的浏览器，非IE内核会返回null
+			var printer = $.newPrinter(config);
+			// 使用的是系统默认的打印机
+			if(1 == type){
+				// 打印预览第一页
+				printer.preview($(".print_content"));
+			}
+			if(2 == type){
+				// 打印预览两页
+				var printContentArray = new Array();
+				var printContent = $(".print_content");
+				for(var i = 0;i < printContent.length;i++){
+					printContentArray.push(printContent[i]);
+				}
+				printer.preview(printContentArray);
+			}
+			// 打印预览，可以传入单个dom对象，也可以传入dom对象数组
+			//printer.preview($(".print_content"));
+			// 打印，可以传入单个dom对象，也可以传入dom对象数组
+			// 第二个参数为选填，不填默认为false，true则弹出打印确认框，false则不弹出，不弹出使用的是系统默认的打印机
+			//printer.print($(".print_content")[, true|false]);
+		}
+	
+	</script>
+	</body>
+</html>
