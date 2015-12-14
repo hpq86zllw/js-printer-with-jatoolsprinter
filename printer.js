@@ -66,7 +66,7 @@
 			};
 			this.preview = function(arg0) {
 
-				if(1 == arguments.length){
+				if(arguments.length >= 1){
 					// 生成打印内容
 					this.generateContent(arg0);
 				}
@@ -81,16 +81,9 @@
 
 				// 将内容全部push进contentArray中
 				var contentArray = new Array();
-				if (content instanceof Array) {
-					for (var i = 0; i < content.length; i++) {
-						// 需要封装成jquery克隆对象，否则原dom对象会被修改
-						contentArray.push($(content[i]).clone());
-					}
-				} else if (content) {
+				for (var i = 0; i < content.length; i++) {
 					// 需要封装成jquery克隆对象，否则原dom对象会被修改
-					contentArray.push($(content).clone());
-				} else {
-					return;
+					contentArray.push($(content[i]).clone());
 				}
 
 				// 创建分页，id为page+页码，如page1、page2

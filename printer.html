@@ -4,13 +4,13 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	</head>
 	<body>
-	<div class="print_content" style="border: 1px solid #000000;">
+	<div class="print_content_page1" style="border: 1px solid #000000;">
 		<h1>我是第一页的标题</h1>
 		<div>我是第一页的内容</div>
 		<div style="color: red;">下边是第一页的图片</div>
 		<img src="img.jpg" />
 	</div>
-	<div class="print_content" style="border: 1px solid #000000;">
+	<div class="print_content_page2" style="border: 1px solid #000000;">
 		<h1>我是第二页的标题</h1>
 		<div>我是第二页的内容</div>
 		<div style="color: red;">下边是第二页的图片</div>
@@ -30,22 +30,20 @@
 			// 使用的是系统默认的打印机
 			if(1 == type){
 				// 打印预览第一页
-				printer.preview($(".print_content"));
+				printer.preview($(".print_content_page1"));
 			}
 			if(2 == type){
 				// 打印预览两页
 				var printContentArray = new Array();
-				var printContent = $(".print_content");
-				for(var i = 0;i < printContent.length;i++){
-					printContentArray.push(printContent[i]);
-				}
+				printContentArray.push($(".print_content_page1"));
+				printContentArray.push($(".print_content_page2"));
 				printer.preview(printContentArray);
 			}
 			// 打印预览，可以传入单个dom对象，也可以传入dom对象数组
-			//printer.preview($(".print_content"));
+			//printer.preview($(".print_content_page1"));
 			// 打印，可以传入单个dom对象，也可以传入dom对象数组
 			// 第二个参数为选填，不填默认为false，true则弹出打印确认框，false则不弹出，不弹出使用的是系统默认的打印机
-			//printer.print($(".print_content")[, true|false]);
+			//printer.print($(".print_content_page1")[, true|false]);
 		}
 	
 	</script>
